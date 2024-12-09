@@ -6,7 +6,7 @@ import logo2 from '../../logos/logo2.svg';
 import logo3 from '../../logos/logo3.svg';
 import logo4 from '../../logos/logo4.svg';
 
-const Layout = () => {
+const Layout = ({ children }) => {
   return (<>
     <header className={L.header}>
       <nav>
@@ -23,6 +23,7 @@ const Layout = () => {
         <img src={logo4} alt="Logo 4" />
       </aside>
     </header>
+    <main>{children}</main>
   </>);
 };
 

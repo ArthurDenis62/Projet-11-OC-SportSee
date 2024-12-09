@@ -1,22 +1,36 @@
+import FondSvg from "../../container/FondSvg";
+import C from '../../container/container.module.scss';
+import GlucidesSvg from "../../lib/svg/Glucides";
+
 const UserMain = ({ userData }) => {
-    return (
-        <div>
-            <h1>Informations de l'utilisateur</h1>
-            <div style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '5px' }}>
-                <h2>
-                    {userData.firstName} {userData.lastName} (Âge : {userData.age})
-                </h2>
-                <p>Score du jour : {(userData.todayScore * 100).toFixed(2)}%</p>
-                <h3>Données clés :</h3>
-                <ul>
-                    <li>Calories : {userData.keyData.calorieCount} kcal</li>
-                    <li>Protéines : {userData.keyData.proteinCount} g</li>
-                    <li>Glucides : {userData.keyData.carbohydrateCount} g</li>
-                    <li>Lipides : {userData.keyData.lipidCount} g</li>
-                </ul>
-            </div>
+    return (<>
+        <div className={C.svgGrid}>
+            <FondSvg children={
+                <p>Calories : {userData.keyData.calorieCount} kcal</p>
+            } width="200px" height="200px" padding="0" color="#FF0000" />
+            <FondSvg children={
+                <p>Protéines : {userData.keyData.proteinCount} g</p>
+            } width="200px" height="200px" padding="0" color="#FF0000" />
+            <FondSvg children={
+                <div>
+                    <div>
+                        <GlucidesSvg />
+                    </div>
+                    <div>
+                        <p>{userData.keyData.carbohydrateCount}g</p>
+                        <p>Glucides</p>
+                    </div>
+                </div>
+                //Faire un composant
+            } width="200px" height="200px" padding="0" color="#FF0000" />
+            <FondSvg children={
+                <p>Lipides : {userData.keyData.lipidCount} g</p>
+            } width="200px" height="200px" padding="0" color="#FF0000" />    
         </div>
-    );
+    </>);
 };
 
 export default UserMain;
+
+
+//<p>Score du jour : {(userData.todayScore * 100).toFixed(2)}%</p>

@@ -3,6 +3,9 @@ import PerformanceRadar from "../../components/Chart/PerformenceRadar";
 import SimpleBar from "../../components/Chart/SimpleBar";
 import UserMain from "../User/User";
 import ApiRequest from "../../services/apiRequest";
+import UserWelcome from "./Welcome";
+import A from "./Accueil.module.scss";
+import FondChart from "../../container/FondChart";
 
 const Accueil = () => {
   const userId = 18;
@@ -70,12 +73,30 @@ const Accueil = () => {
 
   return (
     <main>
-      <h1>Bonjour</h1>
-      <UserMain userData={userData} />
-      <PerformanceRadar radarData={radarData} />
-      <SimpleBar chartData={chartData} />
+      <div className={A.main}>
+        <UserWelcome userData={userData} />
+        <div className={A.parent}>
+          <div className={A.grid1}>
+            <FondChart children={
+              <SimpleBar chartData={chartData} />
+            } width="850px" height="auto" padding="1em" />
+          </div>
+          <div className={A.grid2}>
+            <FondChart children={
+              <PerformanceRadar radarData={radarData} />
+            } width="500px" height="auto" padding="1em" />
+          </div>
+          <div className={A.grid3}>
+            <FondChart children={
+              <UserMain userData={userData} />
+            } width="500px" height="auto" padding="1em" />
+          </div>
+        </div>
+      </div>
     </main>
   );
 };
 
 export default Accueil;
+
+// Faire le rechart Average session

@@ -2,7 +2,8 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 
 const SimpleBar = ({ chartData }) => {
     return (<>
-      <ResponsiveContainer width="90%" height={400} style={{ margin: '0 auto'}}>
+    <p>Activité quotidienne</p>
+      <ResponsiveContainer width="100%" aspect={850 / 320}>
         <BarChart data={chartData}>
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
           <XAxis dataKey="day" />
@@ -18,3 +19,6 @@ const SimpleBar = ({ chartData }) => {
 }
 
 export default SimpleBar
+
+//Position absolute sur le .recharts-legend-wrapper
+//Tooltip composant https://recharts.org/en-US/api/Tooltip
