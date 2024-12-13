@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PerformanceRadar from "../../components/Chart/PerformenceRadar";
 import SimpleBar from "../../components/Chart/SimpleBar";
+import TinyLine from "../../components/Chart/TinyLine";
 import UserMain from "../User/User";
 import ApiRequest from "../../services/apiRequest";
 import UserWelcome from "./Welcome";
@@ -12,6 +13,7 @@ const Accueil = () => {
   const [userData, setUserData] = useState(null);
   const [radarData, setRadarData] = useState([]);
   const [chartData, setChartData] = useState([]);
+  const [tinyData, setTinyData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -20,13 +22,14 @@ const Accueil = () => {
       try {
         setLoading(true);
 
-        const [userResponse, activityResponse, performanceResponse] = await Promise.all([
+        const data = await Promise.all([
+          ApiRequest(userId),
           ApiRequest(userId),
           ApiRequest(userId),
           ApiRequest(userId),
         ]);
-
-        const user = userResponse[0]?.data?.data || {};
+        const dataResponse = data[0]
+        const user = dataResponse[0]?.data?.data || {};
         setUserData({
           firstName: user.userInfos?.firstName,
           lastName: user.userInfos?.lastName,
@@ -40,7 +43,7 @@ const Accueil = () => {
           },
         });
 
-        const activityData = activityResponse[1]?.data?.data?.sessions || [];
+        const activityData = dataResponse[1]?.data?.data?.sessions || [];
         setChartData(
           activityData.map((session) => ({
             day: new Date(session.day).toLocaleDateString("fr-FR", { weekday: "short" }),
@@ -49,12 +52,23 @@ const Accueil = () => {
           }))
         );
 
-        const performanceData = performanceResponse[3]?.data?.data?.data || [];
+        const performanceData = dataResponse[3]?.data?.data?.data || [];
         setRadarData(
           performanceData.map((item) => ({
-            subject: performanceResponse[3]?.data?.data?.kind[item.kind] || "Inconnu",
+            subject: dataResponse[3]?.data?.data?.kind[item.kind] || "Inconnu",
             value: item.value,
           }))
+        );
+
+        const averageSessions = dataResponse[2]?.data?.data?.sessions || [];
+        setTinyData(
+          averageSessions.map((session) => {
+            const daysOfWeek = ["L", "M", "M", "J", "V", "S", "D"];
+            return {
+              day: daysOfWeek[session.day - 1],
+              minutes: session.sessionLength,
+            };
+          })
         );
 
         setLoading(false);
@@ -89,6 +103,11 @@ const Accueil = () => {
           <div className={A.grid3}>
             <FondChart children={
               <UserMain userData={userData} />
+            } width="500px" height="auto" padding="1em" />
+          </div>
+          <div className={A.grid4}>
+            <FondChart children={
+              <TinyLine userId={userId} tinyData={tinyData} />
             } width="500px" height="auto" padding="1em" />
           </div>
         </div>

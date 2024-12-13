@@ -1,9 +1,23 @@
-.container {
-    background-color: #00000005;
-    border-radius: 5px;
-}
-
 .svgGrid {
     display: flex;
     flex-direction: column;
+}
+
+.containerSvg {
+    display: flex;
+    align-items: center;
+    .fondSvg {
+        width: fit-content;
+        padding: 1em;
+        margin: 1em;
+        border-radius: 5px;
+    }
+    .fontSvg {
+        color: black;
+        p:nth-child(1) {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: black;
+        }
+    }
 }

@@ -1,5 +1,3 @@
-import C from './container.module.scss'
-
 const FondSvg = ({ children, width, height, padding, color }) => {
     const style = {
         width: width,
@@ -8,7 +6,7 @@ const FondSvg = ({ children, width, height, padding, color }) => {
         color: color
     }
     return(<>
-        <div className={C.container} style={style}>
+        <div style={style}>
             {children}
         </div>
     </>)
