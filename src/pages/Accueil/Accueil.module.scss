@@ -25,7 +25,8 @@
     grid-row-gap: 0px;
 }
     
-.grid1 { grid-area: 1 / 1 / 3 / 4; }
-.grid2 { grid-area: 3 / 1 / 4 / 4; }
-.grid3 { grid-area: 1 / 4 / 4 / 5; }
-.grid4 { grid-area: 3 / 4 / 3 / 4; }
+.grid1 { grid-area: 1 / 1 / 2 / 4; width: fit-content; height: fit-content; margin-bottom: 2em; }
+.grid2 { grid-area: 1 / 4 / 4 / 5; width: fit-content; height: fit-content; }
+.grid3 { grid-area: 2 / 3 / 2 / 4; width: fit-content; height: fit-content; }
+.grid4 { grid-area: 2 / 1 / 2 / 2; width: fit-content; height: fit-content; }
+.grid5 { grid-area: 2 / 2 / 2 / 4; width: fit-content; height: fit-content; }

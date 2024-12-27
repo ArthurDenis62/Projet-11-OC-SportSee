@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PerformanceRadar from "../../components/Chart/PerformenceRadar";
 import SimpleBar from "../../components/Chart/SimpleBar";
 import TinyLine from "../../components/Chart/TinyLine";
+import UserScoreChart from "../../components/Chart/PieChart";
 import UserMain from "../User/User";
 import ApiRequest from "../../services/apiRequest";
 import UserWelcome from "./Welcome";
@@ -93,22 +94,27 @@ const Accueil = () => {
           <div className={A.grid1}>
             <FondChart children={
               <SimpleBar chartData={chartData} />
-            } width="850px" height="auto" padding="1em" />
+            } width="850px" height="auto" padding="1em" backgroundColor="#FBFBFB" />
           </div>
           <div className={A.grid2}>
-            <FondChart children={
-              <PerformanceRadar radarData={radarData} />
-            } width="500px" height="auto" padding="1em" />
-          </div>
-          <div className={A.grid3}>
             <FondChart children={
               <UserMain userData={userData} />
             } width="500px" height="auto" padding="1em" />
           </div>
+          <div className={A.grid3}>
+            <FondChart children={
+                <UserScoreChart todayScore={userData.todayScore} />
+              } width="258px" height="263px" padding="1em" backgroundColor="#FBFBFB" borderRadius="0.4em" />
+          </div>
           <div className={A.grid4}>
             <FondChart children={
               <TinyLine userId={userId} tinyData={tinyData} />
-            } width="500px" height="auto" padding="1em" />
+            } width="258px" height="auto" padding="1em" />
+          </div>
+          <div className={A.grid5}>
+            <FondChart children={
+              <PerformanceRadar radarData={radarData} />
+            } width="258px" height="263px" padding="1em" backgroundColor="#282D30" borderRadius="0.4em" />
           </div>
         </div>
       </div>

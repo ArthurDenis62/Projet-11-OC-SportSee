@@ -1,6 +1,9 @@
 .svgGrid {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 625px;
 }
 
 .containerSvg {
@@ -14,10 +17,20 @@
     }
     .fontSvg {
         color: black;
+        padding: 1em;
         p:nth-child(1) {
             font-weight: bold;
             font-size: 1.2em;
             color: black;
         }
     }
+}
+
+.FondSvg {
+    width: 258px;
+    height: 124px;
+    padding: 0;
+    color: #FF0000;
+    display: flex;
+    justify-content: center;
 }

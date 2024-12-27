@@ -1,14 +1,21 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import React from "react";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const TinyLine = ({ tinyData }) => {
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <LineChart data={tinyData} margin={{ top: 10, right: 20, left: 10, bottom: 10 }}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="day" tick={{ fontSize: 12 }} tickLine={false} axisLine={false} />
-        <YAxis dataKey="minutes" unit="min" tick={{ fontSize: 12 }} tickLine={false} axisLine={false} />
-        <Tooltip formatter={(value) => `${value} min`} />
-        <Line type="monotone" dataKey="minutes" stroke="#8884d8" strokeWidth={2} />
+    <ResponsiveContainer width="100%" height={200}>
+      <LineChart data={tinyData} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+        <XAxis dataKey="day" tickLine={false} axisLine={false} />
+        <YAxis hide />
+        <Tooltip />
+        <Line
+          type="monotone"
+          dataKey="minutes"
+          stroke="#FF0000"
+          strokeWidth={2}
+          dot={{ r: 3 }}
+          activeDot={{ r: 6 }}
+        />
       </LineChart>
     </ResponsiveContainer>
   );

@@ -18,7 +18,7 @@ const UserMain = ({ userData }) => {
                         <p>Calories</p>
                     </div>
                 </div>
-            } width="200px" height="200px" padding="0" color="#FF0000" />
+            } backgroundColor="#FBFBFB" />
             <FondSvg children={
                 <div className={C.containerSvg}>
                     <div className={C.fondSvg} style={{ backgroundColor: "rgb(74 184 255 / 20%)" }}>
@@ -29,7 +29,7 @@ const UserMain = ({ userData }) => {
                         <p>Protéines</p>
                     </div>
                 </div>
-            } width="200px" height="200px" padding="0" color="#FF0000" />
+            } backgroundColor="#FBFBFB" />
             <FondSvg children={
                 <div className={C.containerSvg}>
                     <div className={C.fondSvg} style={{ backgroundColor: "rgb(253 204 12 / 20%)" }}>
@@ -40,7 +40,7 @@ const UserMain = ({ userData }) => {
                         <p>Glucides</p>
                     </div>
                 </div>
-            } width="200px" height="200px" padding="0" color="#FF0000" />
+            } backgroundColor="#FBFBFB" />
             <FondSvg children={
                 <div className={C.containerSvg}>
                     <div className={C.fondSvg} style={{ backgroundColor: "rgb(253 81 129 / 20%)" }}>
@@ -51,7 +51,7 @@ const UserMain = ({ userData }) => {
                         <p>Lipides</p>
                     </div>
                 </div>
-            } width="200px" height="200px" padding="0" color="#FF0000" />    
+            } backgroundColor="#FBFBFB" />    
         </div>
     </>);
 };
