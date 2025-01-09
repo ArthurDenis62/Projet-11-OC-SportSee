@@ -3,18 +3,18 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "rec
 
 const TinyLine = ({ tinyData }) => {
   return (
-    <ResponsiveContainer width="100%" height={200}>
+    <ResponsiveContainer width="100%" height={280}>
       <LineChart data={tinyData} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-        <XAxis dataKey="day" tickLine={false} axisLine={false} />
-        <YAxis hide />
+        <XAxis dataKey="day" tick={{ fill: '#FFFFFF' }} tickLine={false} axisLine={false} />
+        <YAxis hide domain={[0, 60]} allowDecimals={false} />
         <Tooltip />
         <Line
           type="monotone"
           dataKey="minutes"
-          stroke="#FF0000"
+          stroke="#FFFFFF"
           strokeWidth={2}
-          dot={{ r: 3 }}
-          activeDot={{ r: 6 }}
+          dot={false}
+          activeDot={{ stroke: "white", strokeWidth: '8px', strokeOpacity: '0.4', r: 4 }}
         />
       </LineChart>
     </ResponsiveContainer>

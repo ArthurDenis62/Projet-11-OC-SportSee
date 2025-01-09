@@ -94,12 +94,12 @@ const Accueil = () => {
           <div className={A.grid1}>
             <FondChart children={
               <SimpleBar chartData={chartData} />
-            } width="850px" height="auto" padding="1em" backgroundColor="#FBFBFB" />
+            } width="1200px" height="auto" padding="1em" backgroundColor="#FBFBFB" />
           </div>
           <div className={A.grid2}>
             <FondChart children={
               <UserMain userData={userData} />
-            } width="500px" height="auto" padding="1em" />
+            } width="420px" height="auto" padding="1em" />
           </div>
           <div className={A.grid3}>
             <FondChart children={
@@ -109,7 +109,7 @@ const Accueil = () => {
           <div className={A.grid4}>
             <FondChart children={
               <TinyLine userId={userId} tinyData={tinyData} />
-            } width="258px" height="auto" padding="1em" />
+            } width="258px" height="263px" padding="1em" backgroundColor="#FF0000" borderRadius="0.4em"/>
           </div>
           <div className={A.grid5}>
             <FondChart children={
