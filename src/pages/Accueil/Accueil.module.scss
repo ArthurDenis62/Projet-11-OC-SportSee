@@ -30,3 +30,19 @@
 .grid3 { grid-area: 2 / 3 / 2 / 4; width: fit-content; height: fit-content; }
 .grid4 { grid-area: 2 / 1 / 2 / 2; width: fit-content; height: fit-content; }
 .grid5 { grid-area: 2 / 2 / 2 / 4; width: fit-content; height: fit-content; }
+
+@media (max-width: 1780px) {
+    .main {
+        margin: 7em 2em 0em 2em;
+    }
+    .Welcome {
+        font-size: 28px;
+    }
+    .para {
+        font-size: 14px;
+        margin-bottom: 0em;
+    }
+    .grid1 {
+        margin-bottom: 0em;
+    }
+}

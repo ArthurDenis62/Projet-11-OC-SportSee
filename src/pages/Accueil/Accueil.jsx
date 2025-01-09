@@ -94,27 +94,27 @@ const Accueil = () => {
           <div className={A.grid1}>
             <FondChart children={
               <SimpleBar chartData={chartData} />
-            } width="1200px" height="auto" padding="1em" backgroundColor="#FBFBFB" />
+            } width="98%" height="auto" padding="1em" backgroundColor="#FBFBFB" />
           </div>
           <div className={A.grid2}>
             <FondChart children={
               <UserMain userData={userData} />
-            } width="420px" height="auto" padding="1em" />
+            } width="300px" height="auto" padding="0 1em 1em 1em" />
           </div>
           <div className={A.grid3}>
             <FondChart children={
                 <UserScoreChart todayScore={userData.todayScore} />
-              } width="258px" height="263px" padding="1em" backgroundColor="#FBFBFB" borderRadius="0.4em" />
+              } width="250px" height="255px" padding="0em" backgroundColor="#FBFBFB" borderRadius="0.4em" />
           </div>
           <div className={A.grid4}>
             <FondChart children={
               <TinyLine userId={userId} tinyData={tinyData} />
-            } width="258px" height="263px" padding="1em" backgroundColor="#FF0000" borderRadius="0.4em"/>
+            } width="250px" height="255px" padding="0em" backgroundColor="#FF0000" borderRadius="0.4em"/>
           </div>
           <div className={A.grid5}>
             <FondChart children={
               <PerformanceRadar radarData={radarData} />
-            } width="258px" height="263px" padding="1em" backgroundColor="#282D30" borderRadius="0.4em" />
+            } width="250px" height="255px" padding="0em" backgroundColor="#282D30" borderRadius="0.4em" />
           </div>
         </div>
       </div>

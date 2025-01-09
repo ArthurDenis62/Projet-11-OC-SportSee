@@ -8,8 +8,9 @@ const UserScoreChart = ({ todayScore }) => {
     { name: "Remaining", value: 100 - todayScore * 100 },
   ];
 
-  return (
-    <div style={{ position: "relative", width: "100%", height: 250 }}>
+  return (<>
+    <p style={{ position: 'absolute' }}>Score</p>
+    <div style={{ position: "relative", width: "100%", height: 255 }}>
       <ResponsiveContainer>
         <PieChart>
           <Pie
@@ -43,7 +44,7 @@ const UserScoreChart = ({ todayScore }) => {
         <p style={{ fontSize: "12px", margin: 0 }}>de votre objectif</p>
       </div>
     </div>
-  );
+    </>);
 };
 
 export default UserScoreChart;

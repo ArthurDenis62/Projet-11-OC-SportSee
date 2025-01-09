@@ -44,5 +44,10 @@ table {
 
 main {
   margin-left: 115px;
-  margin-top: 90px;
+}
+
+@media (max-width: 1780px) {
+  main {
+	margin-left: 70px;
+  }
 }
