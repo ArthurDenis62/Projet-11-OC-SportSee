@@ -54,11 +54,20 @@ const Accueil = () => {
         );
 
         const performanceData = dataResponse[3]?.data?.data?.data || [];
+        const kindFrench = {
+            1: 'Cardio', // 6
+            2: 'Energie', // 5
+            3: 'Endurance', // 4
+            4: 'Force', // 3
+            5: 'Vitesse', // 2
+            6: 'Intensité' // 1
+        }
+        const formatedData = performanceData.map((item) => ({
+          subject: kindFrench[item.kind] || "Inconnu",
+          value: item.value,
+        }))
         setRadarData(
-          performanceData.map((item) => ({
-            subject: dataResponse[3]?.data?.data?.kind[item.kind] || "Inconnu",
-            value: item.value,
-          }))
+          formatedData.reverse()
         );
 
         const averageSessions = dataResponse[2]?.data?.data?.sessions || [];

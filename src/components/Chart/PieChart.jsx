@@ -21,7 +21,7 @@ const UserScoreChart = ({ todayScore }) => {
             outerRadius="90%"
             dataKey="value"
             startAngle={90}
-            endAngle={-270}
+            endAngle={450}
           >
             {scoreData.map((_entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index]} />
