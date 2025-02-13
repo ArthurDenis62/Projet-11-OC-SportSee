@@ -132,5 +132,3 @@ const Accueil = () => {
 };
 
 export default Accueil;
-
-// Faire le rechart Average session

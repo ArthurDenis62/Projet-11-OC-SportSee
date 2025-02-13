@@ -20,5 +20,3 @@ const SimpleBar = ({ chartData }) => {
 }
 
 export default SimpleBar
-
-//Tooltip composant https://recharts.org/en-US/api/Tooltip

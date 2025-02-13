@@ -34,7 +34,7 @@ const TinyLine = ({ tinyData }) => {
             top: "0",
             right: "0",
             width: `${hoverPosition}px`,
-            height: "300px",
+            height: "255px",
             backgroundColor: "#333",
             opacity: "0.1",
             transition: "width 0.1s ease"
