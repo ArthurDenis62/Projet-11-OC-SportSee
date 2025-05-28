@@ -8,6 +8,8 @@ import ApiRequest from "../../services/apiRequest";
 import UserWelcome from "./Welcome";
 import A from "./Accueil.module.scss";
 import FondChart from "../../container/FondChart";
+import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from "../../data/data";
+import formatData from "../../services/formatData";
 
 const Accueil = () => {
   const userId = 18;
@@ -17,70 +19,27 @@ const Accueil = () => {
   const [tinyData, setTinyData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const dev = false;
 
   useEffect(() => {
     const fetchAllData = async () => {
       try {
         setLoading(true);
+        const dataResponse = dev
+          ? [
+              USER_MAIN_DATA.find((elt) => elt.id === userId),
+              USER_ACTIVITY.find((elt) => elt.userId === userId),
+              USER_AVERAGE_SESSIONS.find((elt) => elt.userId === userId),
+              USER_PERFORMANCE.find((elt) => elt.userId === userId),
+            ]
+          : await ApiRequest(userId);
 
-        const data = await Promise.all([
-          ApiRequest(userId),
-          ApiRequest(userId),
-          ApiRequest(userId),
-          ApiRequest(userId),
-        ]);
-        const dataResponse = data[0]
-        const user = dataResponse[0]?.data?.data || {};
-        setUserData({
-          firstName: user.userInfos?.firstName,
-          lastName: user.userInfos?.lastName,
-          age: user.userInfos?.age,
-          todayScore: user.todayScore || user.score,
-          keyData: user.keyData || {
-            calorieCount: 0,
-            proteinCount: 0,
-            carbohydrateCount: 0,
-            lipidCount: 0,
-          },
-        });
+        const data = formatData(dataResponse, dev);
 
-        const activityData = dataResponse[1]?.data?.data?.sessions || [];
-        setChartData(
-          activityData.map((session) => ({
-            day: new Date(session.day).toLocaleDateString("fr-FR", { weekday: "short" }),
-            kilogram: session.kilogram,
-            calories: session.calories,
-          }))
-        );
-
-        const performanceData = dataResponse[3]?.data?.data?.data || [];
-        const kindFrench = {
-            1: 'Cardio', // 6
-            2: 'Energie', // 5
-            3: 'Endurance', // 4
-            4: 'Force', // 3
-            5: 'Vitesse', // 2
-            6: 'Intensité' // 1
-        }
-        const formatedData = performanceData.map((item) => ({
-          subject: kindFrench[item.kind] || "Inconnu",
-          value: item.value,
-        }))
-        setRadarData(
-          formatedData.reverse()
-        );
-
-        const averageSessions = dataResponse[2]?.data?.data?.sessions || [];
-        setTinyData(
-          averageSessions.map((session) => {
-            const daysOfWeek = ["L", "M", "M", "J", "V", "S", "D"];
-            return {
-              day: daysOfWeek[session.day - 1],
-              minutes: session.sessionLength,
-            };
-          })
-        );
-
+        setUserData(data.user);
+        setChartData(data.activityData);
+        setRadarData(data.performanceData);
+        setTinyData(data.averageSessions);
         setLoading(false);
       } catch (err) {
         console.error("Erreur lors de la récupération des données :", err);
@@ -90,47 +49,37 @@ const Accueil = () => {
     };
 
     fetchAllData();
-  }, [userId]);
+  }, [dev, userId]);
 
   if (loading) return <p>Chargement des données...</p>;
-  if (error) return <p>{error}</p>;
 
   return (
     <main>
       <div className={A.main}>
-        <UserWelcome userData={userData} />
-        <div className={A.parent}>
-          <div className={A.grid1}>
-            <FondChart children={
-              <SimpleBar chartData={chartData} />
-            } width="98%" height="auto" padding="1em" backgroundColor="#FBFBFB" />
+        {error ? <p>{error}</p> : (
+        <>
+          <UserWelcome userData={userData} />
+          <div className={A.parent}>
+            <div className={A.grid1}>
+              <FondChart children={<SimpleBar chartData={chartData} />} width="98%" height="auto" padding="1em" backgroundColor="#FBFBFB" />
+            </div>
+            <div className={A.grid2}>
+              <FondChart children={<UserMain userData={userData} />} width="300px" height="auto" padding="0 1em 1em 1em" />
+            </div>
+            <div className={A.grid3}>
+              <FondChart children={<UserScoreChart todayScore={userData.todayScore} />} width="250px" height="255px" padding="0em" backgroundColor="#FBFBFB" borderRadius="0.4em" />
+            </div>
+            <div className={A.grid4}>
+              <FondChart children={<TinyLine userId={userId} tinyData={tinyData} />} width="250px" height="255px" padding="0em" backgroundColor="#FF0000" borderRadius="0.4em" />
+            </div>
+            <div className={A.grid5}>
+              <FondChart children={<PerformanceRadar radarData={radarData} />} width="250px" height="255px" padding="0em" backgroundColor="#282D30" borderRadius="0.4em" />
+            </div>
           </div>
-          <div className={A.grid2}>
-            <FondChart children={
-              <UserMain userData={userData} />
-            } width="300px" height="auto" padding="0 1em 1em 1em" />
-          </div>
-          <div className={A.grid3}>
-            <FondChart children={
-                <UserScoreChart todayScore={userData.todayScore} />
-              } width="250px" height="255px" padding="0em" backgroundColor="#FBFBFB" borderRadius="0.4em" />
-          </div>
-          <div className={A.grid4}>
-            <FondChart children={
-              <TinyLine userId={userId} tinyData={tinyData} />
-            } width="250px" height="255px" padding="0em" backgroundColor="#FF0000" borderRadius="0.4em"/>
-          </div>
-          <div className={A.grid5}>
-            <FondChart children={
-              <PerformanceRadar radarData={radarData} />
-            } width="250px" height="255px" padding="0em" backgroundColor="#282D30" borderRadius="0.4em" />
-          </div>
-        </div>
+        </>)}
       </div>
     </main>
   );
 };
 
 export default Accueil;
-
-// Faire le rechart Average session

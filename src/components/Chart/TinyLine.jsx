@@ -27,6 +27,7 @@ const TinyLine = ({ tinyData }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
+      
       {hoverPosition !== null && (
         <div
           style={{
